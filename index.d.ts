@@ -1,11 +1,8 @@
-import { EventEmitter } from 'events'
-
 export interface ClipboardOptions {
 	interval?: number
-	captureRejections?: boolean // EventEmitterOptions options
 }
 
-export class Clipboard extends EventEmitter {
+export default class Clipboard {
 	constructor(options?: ClipboardOptions)
 
 	read(): string

@@ -1,0 +1,19 @@
+{
+	"name": "@uclip/clipboard",
+	"version": "1.0.0",
+	"author": "Noah Greff",
+	"description": "Library for interacting with OS clipboard cross-platform",
+	"keywords": [
+		"clipboard",
+		"javascript"
+	],
+	"license": "ISC",
+	"gypfile": true,
+	"main": "index.js",
+	"scripts": {
+		"install": "node-gyp-build"
+	},
+	"dependencies": {
+		"node-gyp-build": "^4.6.0"
+	}
+}

@@ -14,7 +14,15 @@ std::string Read()
   }
 
   NSString *contents = [pasteboard stringForType:NSPasteboardTypeString];
+
   if (!contents)
+  {
+    return "";
+  }
+
+  std::vector<std::string> files = ReadFiles();
+
+  if (!files.empty())
   {
     return "";
   }

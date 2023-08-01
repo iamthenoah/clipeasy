@@ -10,6 +10,7 @@
 	"license": "ISC",
 	"gypfile": true,
 	"main": "index.js",
+	"types": "index.d.ts",
 	"scripts": {
 		"install": "node-gyp-build"
 	},

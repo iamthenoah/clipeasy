@@ -2,7 +2,7 @@ export interface ClipboardOptions {
 	interval?: number
 }
 
-export default class Clipboard {
+export class Clipboard {
 	constructor(options?: ClipboardOptions)
 
 	read(): string

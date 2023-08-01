@@ -48,6 +48,14 @@
               }
             }
           }
+        ],
+        [
+          'OS=="linux"',
+          {
+            "sources": [
+              "src/clipboard_linux.cc"
+            ]
+          }
         ]
 			]
 		}

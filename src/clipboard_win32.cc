@@ -3,6 +3,14 @@
 #include <vector>
 #include <string>
 
+struct File
+{
+  DWORD pFiles;
+  POINT pt;
+  BOOL fNC;
+  BOOL fWide;
+};
+
 std::string Read()
 {
   if (!IsClipboardFormatAvailable(CF_UNICODETEXT))
@@ -28,6 +36,13 @@ std::string Read()
   if (data == nullptr)
   {
     CloseClipboard();
+    return "";
+  }
+
+  std::vector<std::string> file_paths = ReadFiles();
+
+  if (!file_paths.empty())
+  {
     return "";
   }
 
@@ -120,8 +135,14 @@ void WriteFiles(const std::vector<std::string> &file_paths)
     return;
   }
 
-  EmptyClipboard();
-  HDROP hDrop = GlobalAlloc(GHND | GMEM_ZEROINIT, sizeof(DROPFILES) + (file_paths.size() + 1) * MAX_PATH);
+  size_t totalSize = sizeof(File);
+
+  for (const std::string &file_path : file_paths)
+  {
+    totalSize += (file_path.size() + 1) * sizeof(wchar_t);
+  }
+
+  HGLOBAL hDrop = GlobalAlloc(GHND, totalSize);
 
   if (hDrop == nullptr)
   {
@@ -129,19 +150,27 @@ void WriteFiles(const std::vector<std::string> &file_paths)
     return;
   }
 
-  DROPFILES *drop_files = static_cast<DROPFILES *>(GlobalLock(hDrop));
-  drop_files->pFiles = sizeof(DROPFILES);
-  drop_files->fWide = FALSE;
+  File *drop_files = static_cast<File *>(GlobalLock(hDrop));
+  drop_files->pFiles = sizeof(File);
+  drop_files->fWide = TRUE;
 
-  char *buffer = reinterpret_cast<char *>(drop_files + 1);
+  wchar_t *buffer = reinterpret_cast<wchar_t *>(drop_files + 1);
 
   for (const std::string &file_path : file_paths)
   {
-    strcpy_s(buffer, MAX_PATH, file_path.c_str());
-    buffer += MAX_PATH;
+    size_t converted = mbstowcs(buffer, file_path.c_str(), file_path.size() + 1);
+
+    if (converted == static_cast<size_t>(-1))
+    {
+      GlobalUnlock(hDrop);
+      CloseClipboard();
+      return;
+    }
+    buffer += (converted + 1);
   }
 
   GlobalUnlock(hDrop);
+  EmptyClipboard();
   SetClipboardData(CF_HDROP, hDrop);
 
   CloseClipboard();

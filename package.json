@@ -1,6 +1,6 @@
 {
 	"name": "clipeasy",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"author": "Noah Greff",
 	"description": "NodeJS addon that provides a convenient and easy-to-use interface for working with the system clipboard.",
 	"homepage": "https://github.com/iamthenoah/clipeasy",

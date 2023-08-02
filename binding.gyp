@@ -3,7 +3,7 @@
 		{
       "target_name": "bindings",
       "sources": [
-        "src/export.cc"
+        "src/binding.cc"
       ],
       "include_dirs": [
         "<!@(node -p \"require('node-addon-api').include\")"
@@ -22,7 +22,7 @@
 					'OS=="mac"',
 					{
 						"sources": [
-							"src/clipboard_darwin.mm"
+							"src/darwin.mm"
 						],
 						"link_settings": {
 							"libraries": [
@@ -44,7 +44,7 @@
           'OS=="win"',
           {
             "sources": [
-              "src/clipboard_win32.cc"
+              "src/win32.cc"
             ],
             "msvs_settings": {
               "VCCLCompilerTool": {
@@ -59,7 +59,7 @@
           'OS=="linux"',
           {
             "sources": [
-              "src/clipboard_linux.cc"
+              "src/linux.cc"
             ]
           }
         ]

@@ -18,7 +18,7 @@ export class Clipboard {
 	 */
 	read(): string
 	/**
-	 * Writes text to the clipboard.
+	 * Write text to the clipboard.
 	 *
 	 * @param text data to write
 	 */
@@ -26,7 +26,7 @@ export class Clipboard {
 	/**
 	 * Read the file paths in the clipboard.
 	 *
-	 * Note: if no files have been copied, and empty array is returned.
+	 * Note: if no files have been copied, an empty array is returned.
 	 *
 	 * @returns file paths
 	 */

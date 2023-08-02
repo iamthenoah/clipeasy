@@ -12,9 +12,14 @@
 	"main": "index.js",
 	"types": "index.d.ts",
 	"scripts": {
-		"install": "node-gyp-build"
+		"install": "node-gyp-build",
+		"build": "node build.js"
 	},
 	"dependencies": {
+		"node-addon-api": "^4.0.0",
 		"node-gyp-build": "^4.6.0"
+	},
+	"devDependencies": {
+		"prebuildify": "^5.0.1"
 	}
 }

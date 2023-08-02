@@ -1,80 +1,76 @@
-#include <node.h>
+#include <napi.h>
 #include <vector>
 #include "clipboard.h"
 
-void Read(const v8::FunctionCallbackInfo<v8::Value> &args)
+Napi::String ReadJs(const Napi::CallbackInfo &info)
 {
-  v8::Isolate *isolate = args.GetIsolate();
+  Napi::Env env = info.Env();
   std::string data = Read();
-  args.GetReturnValue().Set(v8::String::NewFromUtf8(isolate, data.c_str()).ToLocalChecked());
+  return Napi::String::New(env, data);
 }
 
-void Write(const v8::FunctionCallbackInfo<v8::Value> &args)
+void WriteJs(const Napi::CallbackInfo &info)
 {
-  v8::Isolate *isolate = args.GetIsolate();
+  Napi::Env env = info.Env();
 
-  if (args.Length() != 1 || !args[0]->IsString())
+  if (info.Length() != 1 || !info[0].IsString())
   {
-    v8::Local<v8::String> message = v8::String::NewFromUtf8(isolate, "Argument must be a string").ToLocalChecked();
-    isolate->ThrowException(v8::Exception::TypeError(message));
+    Napi::TypeError::New(env, "Argument must be a string.").ThrowAsJavaScriptException();
     return;
   }
 
-  v8::String::Utf8Value utf8_data(isolate, args[0].As<v8::String>());
-  Write(*utf8_data);
+  std::string utf8_data = info[0].As<Napi::String>();
+  Write(utf8_data);
 }
 
-void ReadFiles(const v8::FunctionCallbackInfo<v8::Value> &args)
+Napi::Array ReadFilesJs(const Napi::CallbackInfo &info)
 {
-  v8::Isolate *isolate = args.GetIsolate();
+  Napi::Env env = info.Env();
   std::vector<std::string> file_paths = ReadFiles();
-  v8::Local<v8::Array> result = v8::Array::New(isolate, static_cast<int>(file_paths.size()));
+  Napi::Array result = Napi::Array::New(env, file_paths.size());
 
   for (size_t i = 0; i < file_paths.size(); ++i)
   {
-    v8::Local<v8::String> path = v8::String::NewFromUtf8(isolate, file_paths[i].c_str()).ToLocalChecked();
-    (void)result->Set(isolate->GetCurrentContext(), static_cast<uint32_t>(i), path);
+    result.Set(i, Napi::String::New(env, file_paths[i]));
   }
 
-  args.GetReturnValue().Set(result);
+  return result;
 }
 
-void WriteFiles(const v8::FunctionCallbackInfo<v8::Value> &args)
+void WriteFilesJs(const Napi::CallbackInfo &info)
 {
-  v8::Isolate *isolate = args.GetIsolate();
+  Napi::Env env = info.Env();
 
-  if (args.Length() != 1 || !args[0]->IsArray())
+  if (info.Length() != 1 || !info[0].IsArray())
   {
-    v8::Local<v8::String> message = v8::String::NewFromUtf8(isolate, "Argument must be an array of strings").ToLocalChecked();
-    isolate->ThrowException(v8::Exception::TypeError(message));
+    Napi::TypeError::New(env, "Argument must be an array of strings.").ThrowAsJavaScriptException();
     return;
   }
 
-  v8::Local<v8::Array> paths = v8::Local<v8::Array>::Cast(args[0]);
+  Napi::Array paths = info[0].As<Napi::Array>();
   std::vector<std::string> file_paths;
 
-  for (uint32_t i = 0; i < paths->Length(); ++i)
+  for (uint32_t i = 0; i < paths.Length(); ++i)
   {
-    v8::Local<v8::Value> pathValue = paths->Get(isolate->GetCurrentContext(), i).ToLocalChecked();
-    v8::String::Utf8Value utf8_path(isolate, v8::Local<v8::String>::Cast(pathValue));
-    file_paths.push_back(*utf8_path);
+    file_paths.push_back(paths.Get(i).As<Napi::String>());
   }
 
   WriteFiles(file_paths);
 }
 
-void Clear(const v8::FunctionCallbackInfo<v8::Value> &args)
+void ClearJs(const Napi::CallbackInfo &info)
 {
   Clear();
 }
 
-void Initialize(v8::Local<v8::Object> exports)
+Napi::Object Init(Napi::Env env, Napi::Object exports)
 {
-  NODE_SET_METHOD(exports, "read", Read);
-  NODE_SET_METHOD(exports, "write", Write);
-  NODE_SET_METHOD(exports, "readFiles", ReadFiles);
-  NODE_SET_METHOD(exports, "writeFiles", WriteFiles);
-  NODE_SET_METHOD(exports, "clear", Clear);
+  exports.Set("read", Napi::Function::New(env, ReadJs));
+  exports.Set("write", Napi::Function::New(env, WriteJs));
+  exports.Set("readFiles", Napi::Function::New(env, ReadFilesJs));
+  exports.Set("writeFiles", Napi::Function::New(env, WriteFilesJs));
+  exports.Set("clear", Napi::Function::New(env, ClearJs));
+  return exports;
 }
 
-NODE_MODULE(NODE_GYP_MODULE_NAME, Initialize)
+NODE_API_MODULE(NODE_GYP_MODULE_NAME, Init)

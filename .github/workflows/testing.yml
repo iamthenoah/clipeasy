@@ -7,11 +7,12 @@ on:
     branches: ['master']
 
 jobs:
-  build:
-    runs-on: [macos-latest, windows-latest]
+  testing:
+    runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
+        os: [macos-latest, windows-latest]
         node-version: [14.x, 16.x, 18.x]
 
     steps:
@@ -26,3 +27,11 @@ jobs:
       - run: npm i
 
       - run: npm test
+
+  build-macos:
+    needs: testing
+    runs-on: macos-latest
+
+  build-windows:
+    needs: testing
+    runs-on: windows-latest

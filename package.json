@@ -1,5 +1,5 @@
 {
-	"name": "@uclip/clipboard",
+	"name": "clipeasy",
 	"version": "1.0.0",
 	"author": "Noah Greff",
 	"description": "Library for interacting with OS clipboard cross-platform",

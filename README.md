@@ -1,4 +1,4 @@
-# @uclip/clipboard
+# clipeasy
 
 [![Node.js CI](https://github.com/uclip-io/uclip-clipboard/actions/workflows/testing.yml/badge.svg)](https://github.com/uclip-io/uclip-clipboard/actions/workflows/testing.yml)
 
@@ -9,7 +9,7 @@ NodeJS addon that provides a convenient and easy-to-use interface for working wi
 ## Installation
 
 ```
-npm i @uclip/clipboard
+npm i clipeasy
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ npm i @uclip/clipboard
 To use the Clipboard Library in your project, you need to require or import it, depending on your project setup.
 
 ```js
-const { Clipboard } = require('@uclip/clipboard')
+const { Clipboard } = require('clipeasy')
 
 const clipboard = new Clipboard({
 	interval: 100 // optinal

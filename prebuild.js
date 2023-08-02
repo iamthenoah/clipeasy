@@ -1,5 +1,4 @@
-const { promisify } = require('util')
-const prebuildify = promisify(require('prebuildify'))
+const prebuildify = require('util').promisify(require('prebuildify'))
 
 const build = async () => {
 	let { platform } = process

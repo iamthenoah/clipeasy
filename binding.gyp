@@ -17,6 +17,9 @@
 			"cflags_cc!": [
 				"-fno-exceptions"
 			],
+      "defines": [
+        "NAPI_CPP_EXCEPTIONS"
+      ],
 			"conditions": [
 				[
 					'OS=="mac"',

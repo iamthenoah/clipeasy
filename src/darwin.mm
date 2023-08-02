@@ -20,13 +20,6 @@ std::string Read()
     return "";
   }
 
-  std::vector<std::string> files = ReadFiles();
-
-  if (!files.empty())
-  {
-    return "";
-  }
-
   return [contents UTF8String];
 }
 

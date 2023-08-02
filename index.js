@@ -5,16 +5,21 @@ class Clipboard extends EventEmitter {
 	constructor(options) {
 		super(options)
 
-		let previousText = binding.read()
-		let previousFiles = binding.readFiles()
+		let previous = binding.readFiles().length ? binding.readFiles() : binding.read()
 
 		this.watcherId = setInterval(() => {
-			if (binding.read() !== previousText) {
-				previousText = binding.read()
-				this.emit('text-changed', previousText)
-			} else if (!binding.readFiles().every((v, i) => v === previousFiles[i])) {
-				previousFiles = binding.readFiles()
-				this.emit('file-changed', previousFiles)
+			const text = binding.read()
+			const files = binding.readFiles()
+
+			// funky logic. this is because binding.read() also returns file names that have been copied
+			if (files.length) {
+				if (!Array.isArray(previous) || files.some((v, i) => v !== previous[i])) {
+					this.emit('file-changed', files)
+					previous = files
+				}
+			} else if (text !== previous) {
+				this.emit('text-changed', text)
+				previous = text
 			}
 		}, options?.interval ?? 500)
 	}

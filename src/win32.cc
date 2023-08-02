@@ -39,13 +39,6 @@ std::string Read()
     return "";
   }
 
-  std::vector<std::string> file_paths = ReadFiles();
-
-  if (!file_paths.empty())
-  {
-    return "";
-  }
-
   std::wstring contents(data);
   GlobalUnlock(clipboard_data);
   CloseClipboard();

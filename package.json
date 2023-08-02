@@ -2,11 +2,17 @@
 	"name": "clipeasy",
 	"version": "1.0.0",
 	"author": "Noah Greff",
-	"description": "Library for interacting with OS clipboard cross-platform",
+	"description": "NodeJS addon that provides a convenient and easy-to-use interface for working with the system clipboard.",
 	"keywords": [
 		"clipboard",
 		"javascript",
-		"electron"
+		"electron",
+		"copy",
+		"paste",
+		"copy-paste",
+		"clip",
+		"read",
+		"write"
 	],
 	"license": "MIT",
 	"gypfile": true,

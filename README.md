@@ -1,10 +1,10 @@
 # clipeasy
 
-[![Node.js CI](https://github.com/uclip-io/uclip-clipboard/actions/workflows/testing.yml/badge.svg)](https://github.com/uclip-io/uclip-clipboard/actions/workflows/testing.yml)
-
-[![npm version](https://badge.fury.io/js/clipeasy.svg)](https://badge.fury.io/js/clipeasy)
+[![Node.js CI](https://github.com/uclip-io/uclip-clipboard/actions/workflows/testing.yml/badge.svg)](https://github.com/uclip-io/uclip-clipboard/actions/workflows/testing.yml) [![npm version](https://badge.fury.io/js/clipeasy.svg)](https://badge.fury.io/js/clipeasy)
 
 NodeJS addon that provides a convenient and easy-to-use interface for working with the system clipboard. It allows you to read and write text and files from/to the clipboard and provides event-based notifications for changes in the clipboard content.
+
+**Platforms: macos, windows, (ubuntu wip)**
 
 **Also supported in [electron](https://www.electronjs.org/).**
 
@@ -16,17 +16,9 @@ npm i clipeasy
 
 ## Usage
 
-To use the Clipboard Library in your project, you need to require or import it, depending on your project setup.
+To use clipeasy in your project, you need to require or import it, depending on your project setup.
 
-```js
-const { Clipboard } = require('clipeasy')
-
-const clipboard = new Clipboard({
-	interval: 100 // optinal
-})
-
-clipboard.on('text-changed', console.log)
-```
+![electron js](https://github.com/iamthenoah/clipeasy/assets/56337775/4f92dd2a-00cd-43e1-8c1a-87e9b48ca396)
 
 ### Reading text from the clipboard
 

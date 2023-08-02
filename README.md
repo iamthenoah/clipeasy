@@ -99,4 +99,4 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 
 ## License
 
-The Clipboard Library is open-source and distributed under the MIT License. See the LICENSE file for more details.
+Clipeasy is open-source and distributed under the MIT License. See the LICENSE file for more details.

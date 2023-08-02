@@ -8,7 +8,7 @@
 		"javascript",
 		"electron"
 	],
-	"license": "ISC",
+	"license": "MIT",
 	"gypfile": true,
 	"main": "index.js",
 	"types": "index.d.ts",

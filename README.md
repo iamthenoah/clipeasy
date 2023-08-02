@@ -2,6 +2,8 @@
 
 [![Node.js CI](https://github.com/uclip-io/uclip-clipboard/actions/workflows/testing.yml/badge.svg)](https://github.com/uclip-io/uclip-clipboard/actions/workflows/testing.yml)
 
+[![npm version](https://badge.fury.io/js/clipeasy.svg)](https://badge.fury.io/js/clipeasy)
+
 NodeJS addon that provides a convenient and easy-to-use interface for working with the system clipboard. It allows you to read and write text and files from/to the clipboard and provides event-based notifications for changes in the clipboard content.
 
 **Also supported in [electron](https://www.electronjs.org/).**

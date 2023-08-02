@@ -27,7 +27,7 @@ clipboard.on('text-changed', console.log)
 ```js
 const clipboard = new Clipboard()
 
-console.log(clipboard.read()) // what ever is in the clipboard at the time
+console.log(clipboard.read()) // whatever is in the clipboard at the time
 ```
 
 ### Writing text to the clipboard

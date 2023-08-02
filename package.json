@@ -5,7 +5,8 @@
 	"description": "Library for interacting with OS clipboard cross-platform",
 	"keywords": [
 		"clipboard",
-		"javascript"
+		"javascript",
+		"electron"
 	],
 	"license": "ISC",
 	"gypfile": true,

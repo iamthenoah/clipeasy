@@ -4,7 +4,7 @@
 
 NodeJS addon that provides a convenient and easy-to-use interface for working with the system clipboard. It allows you to read and write text and files from/to the clipboard and provides event-based notifications for changes in the clipboard content.
 
-**Platforms: macos, windows, (ubuntu wip)**
+**Platforms: macos, windows, (linux wip)**
 
 **Also supported in [electron](https://www.electronjs.org/).**
 
@@ -40,7 +40,7 @@ console.log(clipboard.read()) // "Hello from the other side!"
 
 ### Handling clipboard change events
 
-The `Clipboard` object extends `EventEmitter` an inherits all of its useful members like `on`, `once`, `addListener`, etc.
+The `Clipboard` object extends `EventEmitter` and inherits all of its useful members like `on`, `once`, `addListener`, etc.
 
 There are two events available to subscribe to:
 

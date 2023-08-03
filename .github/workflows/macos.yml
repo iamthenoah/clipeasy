@@ -1,4 +1,4 @@
-name: tests
+name: macos
 
 on:
   push:
@@ -8,13 +8,10 @@ on:
 
 jobs:
   testing:
-    runs-on: ${{ matrix.os }}
+    runs-on: macos-latest
 
     strategy:
       matrix:
-        # TODO - fix window, ubuntu workflow issues
-        # os: [macos-latest, windows-latest, ubuntu-latest]
-        os: [macos-latest]
         node-version: [14.x, 16.x, 18.x]
 
     steps:

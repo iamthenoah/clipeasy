@@ -12,7 +12,8 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        # TODO - testing for node 14.x, Visual Studio not found error
+        node-version: [16.x, 18.x]
 
     steps:
       - uses: actions/checkout@v3
@@ -23,6 +24,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
-      - run: npm i --loglevel silly
+      - run: npm i
 
       - run: npm test

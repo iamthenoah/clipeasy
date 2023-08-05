@@ -7,11 +7,6 @@
 
 std::string Read()
 {
-  if (!IsClipboardFormatAvailable(CF_UNICODETEXT))
-  {
-    return "";
-  }
-
   if (!OpenClipboard(nullptr))
   {
     return "";
@@ -87,6 +82,7 @@ std::vector<std::string> ReadFiles()
 
   if (!drop_files_handle)
   {
+    CloseClipboard();
     return result;
   }
 
@@ -107,6 +103,8 @@ std::vector<std::string> ReadFiles()
 
     result.emplace_back(utf_result);
   }
+
+  CloseClipboard();
   return result;
 }
 
@@ -189,6 +187,8 @@ void WriteFiles(const std::vector<std::string> &file_paths)
     GlobalFree(data_handle);
     return;
   }
+
+  CloseClipboard();
 }
 
 void Clear()

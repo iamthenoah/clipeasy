@@ -1,5 +1,5 @@
-#ifndef UCLIP_CLIPBOARD
-#define UCLIP_CLIPBOARD
+#ifndef CLIPEASY
+#define CLIPEASY
 
 #include <vector>
 #include <string>
@@ -14,4 +14,4 @@ void WriteFiles(const std::vector<std::string> &file_paths);
 
 void Clear();
 
-#endif // UCLIP_CLIPBOARD
+#endif // CLIPEASY

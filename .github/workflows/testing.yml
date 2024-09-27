@@ -1,6 +1,11 @@
 name: ci
 
 on:
+  workflow_call:
+    inputs:
+      os:
+        required: true
+        type: string
   push:
     branches: [master]
 

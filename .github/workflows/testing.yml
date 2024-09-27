@@ -1,4 +1,4 @@
-name: Testing on Release
+name: Testing on push to master
 
 on:
   push:

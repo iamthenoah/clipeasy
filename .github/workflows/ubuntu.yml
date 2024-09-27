@@ -1,0 +1,9 @@
+name: ubuntu
+
+on: push
+
+jobs:
+  testing:
+    uses: ./.github/workflows/testing.yml
+    with:
+      os: ubuntu-latest

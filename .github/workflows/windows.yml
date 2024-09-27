@@ -1,0 +1,9 @@
+name: windows
+
+on: push
+
+jobs:
+  testing:
+    uses: ./.github/workflows/testing.yml
+    with:
+      os: windows-latest

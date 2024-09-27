@@ -1,0 +1,9 @@
+name: macos
+
+on: push
+
+jobs:
+  testing:
+    uses: ./.github/workflows/testing.yml
+    with:
+      os: macos-latest
